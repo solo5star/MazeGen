@@ -53,6 +53,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <windows.h>
 #include <conio.h>
 
@@ -61,8 +62,8 @@
 
 #define MAZE_GENERATION_DELAY 2
 
-#define MAZE_WIDTH 16
-#define MAZE_HEIGHT 12
+#define MAZE_WIDTH 30
+#define MAZE_HEIGHT 18
 
 // 각 타일에 대응되는 문자
 const char* wall = "■";
@@ -185,6 +186,9 @@ void initializeScreen(int width, int height) {
 void initializeMaze(int width, int height) {
 	maze.width = width;
 	maze.height = height;
+
+	// 랜덤 함수의 시드 설정
+	srand(time(NULL));
 }
 
 // 미로를 생성할 때 다음에 방문할 노드를 랜덤으로
