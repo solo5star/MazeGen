@@ -1,5 +1,7 @@
 # MazeGen
 
+![maze](https://github.com/solo5star/MazeGen/blob/main/maze.png?raw=true)
+
 미로를 생성한 후 방향키를 이용하여 도착지를 찾아가는 게임입니다.
 미로 생성은 DFS-Backtracking 알고리즘을 사용하여 생성하였습니다.
 
