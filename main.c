@@ -57,13 +57,17 @@
 #include <windows.h>
 #include <conio.h>
 
-#define MAX_WORLD_SIZE 100
+// 동적 할당을 사용하지 않으므로 처음부터
+// 배열의 크기를 정적으로 할당하기 위한 상수
+#define MAX_MAZE_SIZE 100
 #define MAX_SCREEN_SIZE 256
 
+// 미로를 생성할 때 얼마나 느리게 생성할 지 설정
 #define MAZE_GENERATION_DELAY 2
 
-#define MAZE_WIDTH 30
-#define MAZE_HEIGHT 18
+// 미로의 크기를 설정
+#define MAZE_WIDTH 20
+#define MAZE_HEIGHT 12
 
 // 각 타일에 대응되는 문자
 const char* wall = "■";
@@ -122,7 +126,7 @@ typedef struct maze {
 	int width;
 	int height;
 
-	cell map[MAX_WORLD_SIZE][MAX_WORLD_SIZE];
+	cell map[MAX_MAZE_SIZE][MAX_MAZE_SIZE];
 } maze_t;
 
 // maze는 프로그램에서 한 개만 사용되기 때문에
@@ -333,6 +337,7 @@ void _drawCell(point p, bool instantly) {
 	int x = p.x * 2 + 1;
 	int y = p.y * 2 + 1;
 
+	// instantly 매개변수에 따라 즉시 그릴 것인지, 다음 heartbeat에 그릴 것인지
 	void (*drawMethod)(point, const char*) = instantly ? drawAtInstantly : drawAt;
 
 	bool isStart = maze.start.x == p.x && maze.start.y == p.y;
