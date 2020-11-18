@@ -70,11 +70,24 @@
 #define MAZE_HEIGHT 12
 
 // 각 타일에 대응되는 문자
-const char* wall = "■";
-const char* road = "  ";
-const char* start = "♧";
-const char* goal = "♪";
-const char* player = "⊙";
+char* wall = "■";
+char* road = "  ";
+char* start = "♧";
+char* goal = "♪";
+char* player = "⊙";
+
+void switchTheme(int themeId) {
+	switch (themeId) {
+	case 2: wall = "▒"; break;
+	case 3: wall = "▦"; break;
+	case 4: wall = "▩"; break;
+	case 5: wall = "▣"; break;
+	case 6: wall = "＊"; break;
+	case 7: wall = "▤"; break;
+	case 8: wall = "※"; break;
+	default: wall = "■"; break;
+	}
+}
 
 // C에는 기본적으로 부울 형이 없기 때문에
 // 직접 정의
@@ -537,7 +550,12 @@ void handleKeyInput() {
 			createNewMaze(maze.width, maze.height);
 			drawMessage("미로를  생성하였습니다.");
 		}
+		else if ('1' <= key && key <= '9') {
+			switchTheme(key - '0');
 		}
+
+		drawMaze();
+		heartbeatScreen();
 	}
 }
 
