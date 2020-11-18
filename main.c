@@ -533,6 +533,10 @@ void handleKeyInput() {
 		else if (key == 'l') {
 			loadMaze();
 		}
+		else if (key == 'n') {
+			createNewMaze(maze.width, maze.height);
+			drawMessage("미로를  생성하였습니다.");
+		}
 		}
 	}
 }
