@@ -436,7 +436,7 @@ void generateMaze(point start, point goal) {
 
 	mazeGeneration_backtracking(start);
 
-	drawMessage("미로를 탈출하세요.");
+	drawMessage("미로를  탈출하세요.");
 }
 
 // 특정 방향으로 지나갈 수 있는지 여부를 알려주는 메서드
