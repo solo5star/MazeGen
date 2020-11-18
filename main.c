@@ -191,6 +191,9 @@ void initializeMaze(int width, int height) {
 	maze.width = width;
 	maze.height = height;
 
+	// Zerofill array
+	memset(maze.map, 0, sizeof maze.map);
+
 	// 랜덤 함수의 시드 설정
 	srand(time(NULL));
 }
