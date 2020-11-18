@@ -1,6 +1,6 @@
 # MazeGen
 
-![maze](https://github.com/solo5star/MazeGen/blob/main/maze_small.gif?raw=true)
+![maze](https://github.com/solo5star/MazeGen/blob/main/demo/maze_demo.gif?raw=true)
 
 미로를 생성한 후 방향키를 이용하여 도착지를 찾아가는 게임입니다.
 미로 생성은 DFS-Backtracking 알고리즘을 사용하여 생성하였습니다.
@@ -26,3 +26,4 @@
   2. 더 이상 진행이 불가할 때 까지 탐색한 후 다른 가지도 탐색합니다.
      단, 길이 막혀있으면 배제합니다.
   3. 이를 진행불가할 때까지 진행합니다.
+
