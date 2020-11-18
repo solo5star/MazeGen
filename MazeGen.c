@@ -84,6 +84,10 @@ char* start = "♧";
 char* goal = "♪";
 char* player = "⊙";
 
+// 미로의 모양을 바꾸는 메서드
+// 1~9번까지 지정된 모양이 있으며
+// 인자로 숫자를 지정하면 해당 모양으로
+// 바뀐다
 void switchTheme(int themeId) {
 	switch (themeId) {
 	case 2: wall = "▒"; break;
@@ -128,10 +132,13 @@ typedef struct point {
 	int y;
 } point;
 
-// 미로 생성 시 필요한 멤버들.
-// 노드의 방문 여부, 뚫린 방향 등이 필요
+// 미로의 각 셀의 상태를 나타내는 구조체
 typedef struct cell {
+	// 미로를 생성할 때(DFS-Backtracking) 한 번 방문했는지
+	// 확인하기 위한 변수
 	bool visited;
+	// 인접한 셀을 지나갈 수 있는지 여부
+	// direction 열거형을 비트마스킹하여 나타낸다
 	int directions;
 } cell;
 
@@ -139,11 +146,15 @@ typedef struct cell {
 // 시작 지점, 골 지점, 플레이어 위치
 // 가로길이 세로길이, cell 배열
 typedef struct maze {
+	// 미로의 출발지점
 	point start;
+	// 미로의 도착지점
 	point goal;
 
+	// 플레이어의 위치
 	point player;
 
+	// 미로의 크기
 	int width;
 	int height;
 
@@ -474,6 +485,7 @@ void movePlayer(direction direction) {
 
 const char* filename = "maze.bin";
 
+// 미로를 저장하는 메서드
 bool saveMaze() {
 	FILE* fp;
 
@@ -493,6 +505,7 @@ bool saveMaze() {
 	return true;
 }
 
+// 저장된 미로를 불러오는 메서드
 bool loadMaze() {
 	FILE* fp;
 
@@ -512,6 +525,7 @@ bool loadMaze() {
 	return true;
 }
 
+// 미로를 생성하는 메서드
 void createNewMaze(int width, int height) {
 	// 콘솔 initialize
 	initializeScreen(width * 2 + 10, height * 2 + 10);
