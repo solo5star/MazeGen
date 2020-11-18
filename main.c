@@ -314,9 +314,9 @@ void goThrough(point origin, direction direction) {
 }
 
 // 미로 밑에 메세지를 띄워주는 메서드
-// 최대 30byte까지 출력 가능하도록 지정되어 있다
+// 최대 80byte까지 출력 가능하도록 지정되어 있다
 void drawMessage(const char* message) {
-	const int maximumLength = 30;
+	const int maximumLength = 80;
 	int len = strlen(message);
 	char buffer[3] = { 0, };
 	for (int i = 0; i < maximumLength; i++) {
