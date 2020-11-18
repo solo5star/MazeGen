@@ -487,6 +487,19 @@ bool loadMaze() {
 
 	return true;
 }
+
+void createNewMaze(int width, int height) {
+	// 콘솔 initialize
+	initializeScreen(width * 2 + 10, height * 2 + 10);
+	// 미로 initialize
+	initializeMaze(width, height);
+
+	drawMaze();
+	heartbeatScreen();
+
+	generateMaze((point) { 0, 0 }, (point) { width - 1, height - 1 });
+}
+
 // 키 입력을 핸들링하는 메서드
 void handleKeyInput() {
 	if (_kbhit()) {
@@ -531,11 +544,14 @@ int main() {
 	initializeMaze(width, height);
 
 	// 처음엔 아무것도 없는 상태를 그린다
-	drawMaze();
-	heartbeatScreen();
+	// drawMaze();
+	// heartbeatScreen();
 
-	// 미로 생성
-	generateMaze((point) { 0, 0 }, (point) { width - 1, height - 1 });
+	// 미로 파일 로드에 실패 시 새로 하나 생성
+	if (!loadMaze()) {
+		drawMessage("");
+		createNewMaze(width, height);
+	}
 
 	drawMaze();
 	heartbeatScreen();
