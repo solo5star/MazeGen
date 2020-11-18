@@ -448,6 +448,45 @@ void movePlayer(direction direction) {
 	drawCellInstantly(maze.player);
 }
 
+const char* filename = "maze.bin";
+
+bool saveMaze() {
+	FILE* fp;
+
+	if (fopen_s(&fp, filename, "wb") != 0) {
+		drawMessage("저장하는  동안  오류가  발생하였습니다.");
+		return false;
+	}
+
+	// Suppress Warning C6387
+	if (fp == NULL) return false;
+
+	fwrite(&maze, sizeof(maze_t), 1, fp);
+	fclose(fp);
+
+	drawMessage("성공적으로  저장하였습니다.");
+
+	return true;
+}
+
+bool loadMaze() {
+	FILE* fp;
+
+	if (fopen_s(&fp, filename, "rb") != 0) {
+		drawMessage("저장된  파일이  없는 것 같습니다.");
+		return false;
+	}
+
+	// Suppress Warning C6387
+	if (fp == NULL) return false;
+
+	fread_s(&maze, sizeof(maze_t), sizeof(maze_t), 1, fp);
+	fclose(fp);
+
+	drawMessage("성공적으로  불러왔습니다.");
+
+	return true;
+}
 // 키 입력을 핸들링하는 메서드
 void handleKeyInput() {
 	if (_kbhit()) {
@@ -469,6 +508,15 @@ void handleKeyInput() {
 			}
 
 			while (_kbhit()) _getch();
+
+			return;
+		}
+		else if (key == 's') {
+			saveMaze();
+		}
+		else if (key == 'l') {
+			loadMaze();
+		}
 		}
 	}
 }
