@@ -78,7 +78,7 @@ const char* player = "⊙";
 
 // C에는 기본적으로 부울 형이 없기 때문에
 // 직접 정의
-typedef enum {false, true} bool;
+typedef enum { false, true } bool;
 
 // conio.h의 키 입력에 대한 상수 정의
 typedef enum {
@@ -353,8 +353,8 @@ void _drawCell(point p, bool instantly) {
 	drawMethod((point) { x + 1, y + 1 }, wall);
 	// drawMethod((point) { x - 1, y }, cell->directions & LEFT ? road : wall);
 	// drawMethod((point) { x, y - 1 }, cell->directions & DOWN ? road : wall);
-	drawMethod((point) { x + 1, y }, cell->directions & RIGHT ? road : wall);
-	drawMethod((point) { x, y + 1 }, cell->directions & UP ? road : wall);
+	drawMethod((point) { x + 1, y }, cell->directions& RIGHT ? road : wall);
+	drawMethod((point) { x, y + 1 }, cell->directions& UP ? road : wall);
 }
 
 // _drawCell(p, false) wrapping 메서드
